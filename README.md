@@ -3,6 +3,7 @@
 This is a project based on creating a small Twitter clone
 
 ## User Stories
+```
 There are three stages to the User stories, I will initially work on the project to set up Part 1, then progress onto Part 2 and Part 3.
 
 ### Part 1:
@@ -35,6 +36,8 @@ I want to log out of Chitter
 As a Maker
 So that I can stay constantly tapped in to the shouty box of Chitter
 I want to receive an email if I am tagged in a Peep
+
+```
 
 ## Set-up:
 ```shell

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+  <head lang="en">
+    <title>Chitter Posts</title>
+  </head>
+  <body>
+    <h1>Chitter Posts</h1>
+    {% for post in posts %}
+    <div>
+        <h2>{{post.content}}</h2>
+        <p class = "t-post-dates">Date: {{post.post_date_time}}</p>
+    </div>
+    {% endfor %}
+  </body>
+</html>
