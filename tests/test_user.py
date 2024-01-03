@@ -62,7 +62,7 @@ def test_user_isvalid():
 We can generate errors for an invalid user
 """
 def test_user_errors():
-    assert User(1, "", "password!", "", "").generates_errors() == "Email can't be blank\nName can't be blank\nUsername can't be blank"
+    assert User(1, "", "password!", "", "").generates_errors() == "Email can't be blank, Name can't be blank, Username can't be blank"
     assert User(1, "user@testemail.com", "password!", "Test Name", "").generates_errors() == "Username can't be blank"
     assert User(1, "user@testemail.com", "password!", "", "Username").generates_errors() == "Name can't be blank"
     assert User(1, "", "password!", "Test Name", "Usernme").generates_errors() == "Email can't be blank"
@@ -71,4 +71,4 @@ def test_user_errors():
     assert User(1, None, "password!", "Test Name", "Usernme").generates_errors() == "Email can't be blank"
     assert User(None, "user@testemail.com", "password!", "Test Name", "Usernme").generates_errors() == None
     assert User(1, "user@testemail.com", "pass?", "Test Name", 'Username').generates_errors() == """Password must be at least 8 characters and contain one of the following special characters: `!`, `@`,`$`, `%` or `&`"""
-    assert User(1, "", "pass?", "Test Name", 'Username').generates_errors() == """Email can't be blank\nPassword must be at least 8 characters and contain one of the following special characters: `!`, `@`,`$`, `%` or `&`"""
+    assert User(1, "", "pass?", "Test Name", 'Username').generates_errors() == """Email can't be blank, Password must be at least 8 characters and contain one of the following special characters: `!`, `@`,`$`, `%` or `&`"""

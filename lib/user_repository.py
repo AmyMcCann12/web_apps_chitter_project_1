@@ -19,8 +19,8 @@ class UserRepository:
         user = User(row['id'], row['email'], row['password'], row['name'], row['username'])
         return user
     
-    def create(self, email, password, name, username):
-        self.connection.execute('INSERT INTO users (email, password, name, username) VALUES (%s, %s, %s, %s)', [email, password, name, username])
+    def create(self, user):
+        self.connection.execute('INSERT INTO users (email, password, name, username) VALUES (%s, %s, %s, %s)', [user.email, user.password, user.name, user.username])
         return None
     
     def delete(self, user_id):

@@ -49,4 +49,4 @@ class User:
         if len(errors) == 0:
             return None
         else:
-            return "\n".join(errors)
+            return ", ".join(errors)

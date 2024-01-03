@@ -37,7 +37,8 @@ We get a new record in the user database
 def test_create_a_user(db_connection):
     db_connection.seed('seeds/chitter_tables.sql')
     repository = UserRepository(db_connection)
-    repository.create("test@useremail.com", "password!", "test user", "test username")
+    user = User(None, "test@useremail.com", "password!", "test user","test username")
+    repository.create(user)
     users = repository.all()
     assert users == [
         User(1, 'user1@emailaddress.com', 'password1!', 'person1', 'username1'),
@@ -89,6 +90,7 @@ Then we still get the user, but the posts attribute is empty
 def test_find_with_no_posts(db_connection):
     db_connection.seed('seeds/chitter_tables.sql')
     repository = UserRepository(db_connection)
-    repository.create("test@useremail.com", "password!", "test user", "test username")
+    user = User(None, "test@useremail.com", "password!", "test user", "test username")
+    repository.create(user)
     user_with_posts = repository.find_with_posts(6)
     assert user_with_posts ==  User(6, "test@useremail.com", "password!", "test user", "test username")

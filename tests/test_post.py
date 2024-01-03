@@ -51,4 +51,4 @@ def test_post_errors():
     assert Post(1, None, 1, "2023-12-10 15:30:00").generates_errors() == "Post content can't be blank"
     assert Post(1, "Test Content", None, "2023-12-10 15:30:00").generates_errors() == "User id can't be blank"
     assert Post(1, "Test Content", 2, "2023-12-10 15:30:00").generates_errors() == None
-    assert Post(1, "", None, "2023-12-10 15:30:00").generates_errors() == "Post content can't be blank\nUser id can't be blank"
+    assert Post(1, "", None, "2023-12-10 15:30:00").generates_errors() == "Post content can't be blank, User id can't be blank"
