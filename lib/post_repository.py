@@ -1,5 +1,6 @@
 from lib.post import Post
 from lib.user import User
+from datetime import datetime
 
 class PostRepository:
     def __init__(self, connection):
@@ -9,18 +10,19 @@ class PostRepository:
         rows = self.connection.execute('SELECT * FROM posts')
         posts = []
         for row in rows:
-            post = Post(row['id'], row['content'], row['post_date_time'], row['user_id'])
+            post = Post(row['id'], row['content'], row['user_id'], row['post_date_time'])
             posts.append(post)
         return posts
     
     def find(self, id):
         rows = self.connection.execute('SELECT * FROM posts WHERE id = %s', [id])
         row = rows[0]
-        post = Post(row['id'], row['content'], row['post_date_time'], row['user_id'])
+        post = Post(row['id'], row['content'], row['user_id'], row['post_date_time'])
         return post
     
-    def create(self, content, post_date_time, user_id):
-        self.connection.execute('INSERT INTO posts (content, post_date_time, user_id) VALUES (%s, %s, %s)', [content, post_date_time, user_id])
+    def create(self, post):
+        self.connection.execute('INSERT INTO posts (content, post_date_time, user_id) VALUES (%s, %s, %s)', [post.content, post.post_date_time, post.user_id])
+        return None 
     
     def delete(self, id):
         self.connection.execute('DELETE FROM posts WHERE id = %s', [id])
@@ -44,7 +46,7 @@ class PostRepository:
         )
         row = rows[0]
         user = User(row['user_id'], row['email'], row['password'], row['name'], row['username'])
-        post = Post(row['post_id'], row['content'], row['post_date_time'], row['user_id'], user)
+        post = Post(row['post_id'], row['content'], row['user_id'], row['post_date_time'], user)
         return post
     
     def sort(self):
